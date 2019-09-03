@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.4.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/mongoose": "^5.5.16",
     "antd": "^3.22.0",
@@ -24,6 +25,7 @@
     "typescript": "^3.5.3",
     "utility": "^1.16.1"
   },
+  "proxy": "http://localhost:9093",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
