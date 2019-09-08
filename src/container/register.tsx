@@ -1,28 +1,29 @@
 import * as React from "react";
 import { Button, Input } from "antd";
 import "antd/dist/antd.css";
-
+import {connect} from 'react-redux'
+import {register} from "../redux/user.redux";
 export interface Props {
-  name?: string;
-  password?: string;
-  repassword?: string;
+  user?: string;
+  pwd?: string;
+  repwd?: string;
   type?: number;
 }
 interface State {
-  name: string;
-  password: string;
-  repassword: string;
+  user: string;
+  pwd: string;
+  repwd: string;
   nickname: string;
   type: number; // 1，seller 2,customer
   email: string;
 }
-export default class Register extends React.Component<Props, State> {
+ class Register extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      name: "",
-      password: "",
-      repassword: "",
+      user: "",
+      pwd: "",
+      repwd: "",
       nickname: "",
       type: 1,
       email: ""
@@ -34,7 +35,7 @@ export default class Register extends React.Component<Props, State> {
       <div>
         <Input
           placeholder={"please type user name"}
-          onChange={event => this.setState({ name: event.target.value })}
+          onChange={event => this.setState({ user: event.target.value })}
         />
         <Input
           placeholder={"please type nick name"}
@@ -42,19 +43,22 @@ export default class Register extends React.Component<Props, State> {
         />
         <Input
           placeholder={"please type your password"}
-          onChange={event => this.setState({ password: event.target.value })}
+          onChange={event => this.setState({ pwd: event.target.value })}
         />
         <Input
           placeholder={"please type password again "}
-          onChange={event => this.setState({ repassword: event.target.value })}
+          onChange={event => this.setState({ repwd: event.target.value })}
         />
         <Input
           placeholder={"please type email"}
-          onChange={event => this.setState({ name: event.target.value })}
+          onChange={event => this.setState({ user: event.target.value })}
         />
 
-        <Button size={"large"}>register</Button>
+        <Button size={"large"} onClick={()=>register(this.state)}>register</Button>
       </div>
     );
   }
 }
+const mapStateToProps = (state:any) => (state.user)
+
+export default  connect(mapStateToProps)(Register)

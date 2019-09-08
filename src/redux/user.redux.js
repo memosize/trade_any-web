@@ -37,14 +37,26 @@ export function user(state = initState, action) {
   }
 }
 // reducer
-export function register({ type, user, repeatpwd, pwd, email }) {
+export function errMsg(msg) {
+  return { msg, type: ERROR_MSG };
+}
+export function registerSuccess(data) {
+  return { type: REGISTER_SUCCESS, payload: data };
+}
+export function register({ type, user, repwd, pwd, email }) {
   if (!user || !pwd || !type || !email) {
-    return ERROR_MSG("user & password & email is necessary ");
+    return errMsg("user & password & email is necessary ");
   }
-  if (pwd !== repeatpwd) {
-    return ERROR_MSG("two passwords are inconsistent");
+  if (pwd !== repwd) {
+    return errMsg("two passwords are inconsistent");
   }
   return dispatch => {
-    axios.post("/user/register", { user, type, pwd, email }).then(res => {});
+    axios.post("/user/register", { user, type, pwd, email }).then(res => {
+      if (res.status === 200 && res.data.code === 0) {
+        dispatch(registerSuccess({ user, pwd, type }))
+      }else{
+        dispatch(errMsg(res.data.msg))
+      }
+    });
   };
 }
