@@ -36,3 +36,15 @@ export function user(state = initState, action) {
       return state;
   }
 }
+// reducer
+export function register({ type, user, repeatpwd, pwd, email }) {
+  if (!user || !pwd || !type || !email) {
+    return ERROR_MSG("user & password & email is necessary ");
+  }
+  if (pwd !== repeatpwd) {
+    return ERROR_MSG("two passwords are inconsistent");
+  }
+  return dispatch => {
+    axios.post("/user/register", { user, type, pwd, email }).then(res => {});
+  };
+}

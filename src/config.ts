@@ -1,13 +1,12 @@
-import axios from 'axios'
+import axios from "axios";
+import { Toast } from "antd-mobile";
 // 拦截请求
-axios.interceptors.request.use(function(config){
-  //todo
-  // loading show
-  return config
-})
+axios.interceptors.request.use(function(config) {
+  Toast.loading("loading", 0);
+  return config;
+});
 // 拦截响应
-axios.interceptors.response.use(function(config){
-  //todo
-  // loading hide
-  return config
-})
+axios.interceptors.response.use(function(config) {
+  Toast.hide();
+  return config;
+});

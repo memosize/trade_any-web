@@ -21,6 +21,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <Router>
+      <Route path={"/index"} component={App} />
       <Route path={"/login"} component={login} />
       <Route path={"/register"} component={register} />
     </Router>
