@@ -1,6 +1,7 @@
-import express from "express";
-import utility, { md5 } from "utility";
-import cookie from "cookie-parser";
+const express = require("express");
+const utils = require("utility");
+
+const cookie = require("cookie-parser");
 import { userModel as User } from "../model/user";
 const Router = express.Router();
 Router.get("/list", function(req, res) {
@@ -24,24 +25,23 @@ Router.post("/login", function(req, res) {
   });
 });
 Router.post("/register", function(req, res) {
+  console.log("ssss");
   const { user, pwd, type } = req.body;
-  User.findOne({user},function (err,doc) {
-    if (doc){
-      return res.json({msg:''})
+  User.findOne({ user }, function(err, doc) {
+    if (doc) {
+      return res.json({ msg: "" });
     }
-    User.create({user,type,pwd:md5Pwd(pwd)},function (err,doc) {
-      if (err){
-        res.json({msg:'backend error'})
+    User.create({ user, type, pwd: md5Pwd(pwd) }, function(err, doc) {
+      if (err) {
+        res.json({ msg: "backend error" });
       }
       return res.json({ code: 0 });
-    })
-
-  })
-
+    });
+  });
 });
 
 function md5Pwd(pwd) {
   const salt = "mikis";
   return utility.md5(utils.md5(pwd + salt));
 }
-module.exports = {Router}
+module.exports = { Router };

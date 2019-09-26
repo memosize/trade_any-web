@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Button, Input } from "antd";
 import "antd/dist/antd.css";
-import {connect} from 'react-redux'
-import {register} from "../redux/user.redux";
+import { connect } from "react-redux";
+import { register } from "../redux/user.redux";
 export interface Props {
   user?: string;
   pwd?: string;
@@ -17,7 +17,7 @@ interface State {
   type: number; // 1，seller 2,customer
   email: string;
 }
- class Register extends React.Component<Props, State> {
+class Register extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -51,14 +51,16 @@ interface State {
         />
         <Input
           placeholder={"please type email"}
-          onChange={event => this.setState({ user: event.target.value })}
+          onChange={event => this.setState({ email: event.target.value })}
         />
 
-        <Button size={"large"} onClick={()=>register(this.state)}>register</Button>
+        <Button size={"large"} onClick={() => register(this.state)}>
+          register
+        </Button>
       </div>
     );
   }
 }
-const mapStateToProps = (state:any) => (state.user)
+const mapStateToProps = (state: any) => state.user;
 
-export default  connect(mapStateToProps)(Register)
+export default connect(mapStateToProps)(Register);

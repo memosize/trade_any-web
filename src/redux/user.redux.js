@@ -44,19 +44,27 @@ export function registerSuccess(data) {
   return { type: REGISTER_SUCCESS, payload: data };
 }
 export function register({ type, user, repwd, pwd, email }) {
-  if (!user || !pwd || !type || !email) {
-    return errMsg("user & password & email is necessary ");
-  }
-  if (pwd !== repwd) {
-    return errMsg("two passwords are inconsistent");
-  }
+  console.log(type, user, repwd, pwd, email);
+  // if (!user || !pwd || !type || !email) {
+  //   return errMsg("user & password & email is necessary ");
+  // }
+  // if (pwd !== repwd) {
+  //   return errMsg("two passwords are inconsistent");
+  // }
+
   return dispatch => {
-    axios.post("/user/register", { user, type, pwd, email }).then(res => {
-      if (res.status === 200 && res.data.code === 0) {
-        dispatch(registerSuccess({ user, pwd, type }))
-      }else{
-        dispatch(errMsg(res.data.msg))
-      }
-    });
+    console.log("sdsoooooooo");
+
+    axios
+      .post("/user/register", { user, type, pwd, email })
+      .then(res => {
+        console.log(res);
+        if (res.status === 200 && res.data.code === 0) {
+          dispatch(registerSuccess({ user, pwd, type }));
+        } else {
+          dispatch(errMsg(res.data.msg));
+        }
+      })
+      .catch(error => console.log(error));
   };
 }
