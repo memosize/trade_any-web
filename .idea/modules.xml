@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../tradeAnyServer/.idea/tradeAnyServer.iml" filepath="$PROJECT_DIR$/../tradeAnyServer/.idea/tradeAnyServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/tradeweb.iml" filepath="$PROJECT_DIR$/.idea/tradeweb.iml" />
     </modules>
   </component>
