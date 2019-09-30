@@ -21,10 +21,10 @@
     "redux-thunk": "^2.3.0",
     "typescript": "^3.5.3"
   },
+  "proxy": "http://localhost:9093",
   "plugins": [
     "@typescript-eslint"
   ],
-  "proxy": "http://localhost:9093",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
