@@ -8,14 +8,16 @@ export interface Props {
   pwd?: string;
   repwd?: string;
   type?: number;
+  dispatch: any;
+  register: (state: any) => void;
 }
 interface State {
   user: string;
   pwd: string;
   repwd: string;
-  nickname: string;
   type: number; // 1，seller 2,customer
   email: string;
+  nick: string;
 }
 class Register extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -24,9 +26,9 @@ class Register extends React.Component<Props, State> {
       user: "",
       pwd: "",
       repwd: "",
-      nickname: "",
       type: 1,
-      email: ""
+      email: "",
+      nick: ""
     };
   }
 
@@ -39,7 +41,7 @@ class Register extends React.Component<Props, State> {
         />
         <Input
           placeholder={"please type nick name"}
-          onChange={event => this.setState({ nickname: event.target.value })}
+          onChange={event => this.setState({ nick: event.target.value })}
         />
         <Input
           placeholder={"please type your password"}
@@ -54,7 +56,10 @@ class Register extends React.Component<Props, State> {
           onChange={event => this.setState({ email: event.target.value })}
         />
 
-        <Button size={"large"} onClick={() => register(this.state)}>
+        <Button
+          size={"large"}
+          onClick={() => this.props.dispatch(register(this.state))}
+        >
           register
         </Button>
       </div>
